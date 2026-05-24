@@ -1,3 +1,4 @@
+import csv
 import os
 import tensorflow as tf
 
@@ -26,7 +27,13 @@ def puf_attack_1b():
             crps = pypuf.io.ChallengeResponseSet.from_simulation(puf, N=n_crps, seed=2)  # type: ignore[arg-type]
 
             attack = pypuf.attack.MLPAttack2021(
-                crps, seed=3, net=[2**k, 2**k], bs=1000, lr=0.001, epochs=100, early_stop=0.01
+                crps,
+                seed=3,
+                net=[2**k, 2**k],
+                bs=1000,
+                lr=0.001,
+                epochs=100,
+                early_stop=0.01,
             )
             attack.fit()
 
@@ -35,6 +42,14 @@ def puf_attack_1b():
 
             Z[segs][xors] = wynik
             print("---------------------------------------")
+
+    os.makedirs("output", exist_ok=True)
+    with open("output/APUF_MLP_attack.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["n", "k", "similarity"])
+        for segs in range(len(n_apuf_seg)):
+            for xors in range(len(n_xors)):
+                writer.writerow([n_apuf_seg[segs], n_xors[xors], Z[segs][xors]])
 
     X, Y = np.meshgrid(n_apuf_seg, n_xors, indexing="ij")
 
@@ -50,7 +65,6 @@ def puf_attack_1b():
     w.set_title("MLPAttack2021 na XOR APUF")
     wykres.colorbar(surf, shrink=0.5)
 
-    os.makedirs("output", exist_ok=True)
     plt.savefig("output/APUF_MLP_attack.png", dpi=300)
     plt.show()
 

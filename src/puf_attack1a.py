@@ -1,3 +1,4 @@
+import csv
 import os
 import tensorflow as tf
 
@@ -38,6 +39,14 @@ def puf_attack_1a():
             Z[segs][xors] = wynik
             print("---------------------------------------")
 
+    os.makedirs("output", exist_ok=True)
+    with open("output/APUF_LR_attack.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["n", "k", "similarity"])
+        for segs in range(len(n_apuf_seg)):
+            for xors in range(len(n_xors)):
+                writer.writerow([n_apuf_seg[segs], n_xors[xors], Z[segs][xors]])
+
     X, Y = np.meshgrid(n_apuf_seg, n_xors, indexing="ij")
 
     wykres = matplotlib.pyplot.figure()
@@ -53,7 +62,6 @@ def puf_attack_1a():
     w.set_title("LRAttack2021 na XOR APUF")
     wykres.colorbar(surf, shrink=0.5)
 
-    os.makedirs("output", exist_ok=True)
     plt.savefig("output/APUF_LR_attack.png", dpi=300)
     plt.show()
 

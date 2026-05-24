@@ -1,3 +1,4 @@
+import csv
 import os
 import tensorflow as tf
 
@@ -12,7 +13,7 @@ import matplotlib.pyplot as plt
 
 
 def puf_attack_2b():
-    n_values = np.array([32, 64], dtype="int")
+    n_values = np.array([8, 16, 24, 32, 64], dtype="int")
     k_down_values = np.array([2, 4, 8], dtype="int")
     n_crps = 100000
 
@@ -44,6 +45,13 @@ def puf_attack_2b():
             print("---------------------------------------")
 
     os.makedirs("output", exist_ok=True)
+
+    with open("output/InterposePUF_MLP_attack.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["n", "k_down", "similarity"])
+        for ni in range(len(n_values)):
+            for ki in range(len(k_down_values)):
+                writer.writerow([n_values[ni], k_down_values[ki], results[ni][ki]])
 
     wykres, ax = plt.subplots(figsize=(8, 5))
     for ni, n in enumerate(n_values):
