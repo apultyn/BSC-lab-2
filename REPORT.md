@@ -82,7 +82,7 @@ Miara skuteczności ataku to **podobieństwo modelu** (ang. _model similarity_) 
 
 ![LRAttack2021 na XOR APUF](output/APUF_LR_attack.png)
 
-| $n$ \ $k$ | $k=1$ | $k=2$ | $k=3$ | $k=4$ |
+| $n$ \\ $k$ | $k=1$ | $k=2$ | $k=3$ | $k=4$ |
 |-----------|-------|-------|-------|-------|
 | $n=8$     | 0.964 | 0.945 | 0.873 | 0.965 |
 | $n=16$    | 0.950 | 0.947 | 0.959 | 0.929 |
@@ -95,7 +95,7 @@ Atak LR na XOR APUF uzyskał podobieństwo modelu w zakresie **0.88-0.96** dla w
 
 ![MLPAttack2021 na XOR APUF](output/APUF_MLP_attack.png)
 
-| $n$ \ $k$ | $k=1$ | $k=2$ | $k=3$ | $k=4$ |
+| $n$ \\ $k$ | $k=1$ | $k=2$ | $k=3$ | $k=4$ |
 |-----------|-------|-------|-------|-------|
 | $n=8$     | 1.000 | 1.000 | 1.000 | 1.000 |
 | $n=16$    | 1.000 | 0.997 | 0.995 | 0.986 |
@@ -108,7 +108,7 @@ Atak MLP osiągnął jeszcze wyższe wyniki: podobieństwo modelu w zakresie **0
 
 ![LRAttack2021 na InterposePUF](output/InterposePUF_LR_attack.png)
 
-| $n$ \ $k_{down}$ | $k_{down}=2$ | $k_{down}=4$ | $k_{down}=8$ |
+| $n$ \\ $k_{down}$ | $k_{down}=2$ | $k_{down}=4$ | $k_{down}=8$ |
 |------------------|--------------|--------------|--------------|
 | $n=8$            | 0.918        | 0.943        | 0.955        |
 | $n=16$           | 0.739        | 0.757        | 0.554        |
@@ -122,7 +122,7 @@ Atak LR na Interpose PUF okazał się znacznie mniej skuteczny. Dla $k_{down}$ =
 
 ![MLPAttack2021 na InterposePUF](output/InterposePUF_MLP_attack.png)
 
-| $n$ \ $k_{down}$ | $k_{down}=2$ | $k_{down}=4$ | $k_{down}=8$ |
+| $n$ \\ $k_{down}$ | $k_{down}=2$ | $k_{down}=4$ | $k_{down}=8$ |
 |------------------|--------------|--------------|--------------|
 | $n=8$            | 1.000        | 1.000        | 1.000        |
 | $n=16$           | 0.969        | 0.962        | 0.826        |
